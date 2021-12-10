@@ -1,0 +1,110 @@
+.post-section{
+    width: 69%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    padding: 6px;
+    margin: 0px 0px 0px 10px;
+    border: 1px solid White;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0px 0px 2px grey;
+}
+.container {
+    width: 350px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 54px 0px 0px 490px;
+    border: 2px solid White;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0px 0px 10px grey;
+}
+#intro
+    {
+        
+        height: 200px;  
+        margin: 0px 11px 0px 10px;
+        border: 1px solid White;
+        border-radius: 15px;
+        background: rgb(255, 255, 255);
+        box-shadow: 0px 0px 2px grey;
+        /* float: left; */
+        /* display: inline; */
+       
+    }
+#edit-Profile{
+    position: absolute;
+    right: 10px;
+    top : 10px ;
+    display: flex;
+    border: none;
+    border-radius: 20px;
+    
+
+}
+.intro-section .boxes{
+    background-color: rgb(168, 168, 168);
+        display: absolute;
+        margin:14px 13px 0px 240px;
+        border: 1px solid White;
+        border-radius: 0px grey;
+        background: white;
+        box-shadow: 0px 0px 2px grey;
+}
+.intro-section{
+   width : 100%;
+   /* display: inline; */
+}
+.intro-section .sub-heading{
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: medium;
+    font-weight: bold;
+    margin-left: 50px;
+}
+.top-bar{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+    width: 100%;
+    height: 20%;
+    background-color: rgb(2, 80, 140);
+}
+.header_name{
+    margin-left:20px ;
+    color: white;
+}
+.heading{
+    text-align: center;
+   padding-bottom: 20px;
+}
+.logo {
+    margin-bottom: 15px;
+    margin-top: 0px;
+    padding-top: 0;
+}
+.ant-form-item-control-input-content {
+    flex: inherit;
+    max-width: 100;
+    align-items: center;
+    width: 100%;
+    margin:auto
+}
+.ant-form-item-control-input{
+    width: 100%;
+}
+
+.img_post{
+    display: inline;
+    float: left;
+    margin-left: 20px ;
+    margin-top: 10px;
+}
+.intro_heading{
+    margin-left: 20px;
+}
