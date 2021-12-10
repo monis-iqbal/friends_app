@@ -1,0 +1,25 @@
+.search_bar{
+    /* float: right; */
+    text-align: right;
+    width: 250px;
+    
+    display: inline;
+}
+.menu_bar{
+    display: inline;
+    float: right;
+    margin: 10px 10px 0px 0px;
+}
+
+.icon_search{
+    height: 40px;
+    width: 40px;
+    color: white;
+    font-size: 20px;
+
+}
+.input_search{
+    border-radius: 15px;
+    padding-left: 10px;
+}
+

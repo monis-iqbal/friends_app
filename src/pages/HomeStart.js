@@ -3,7 +3,7 @@ import { auth, signOut } from "./FirebaseApp";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "antd";
-import { getDownloadURL,ref, uploadBytes } from "firebase/storage"
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { } from './FirebaseApp'
 import {
   collection,
@@ -17,13 +17,14 @@ import {
 } from "./FirebaseApp";
 import "./pages.css";
 import { setUser } from "./SignInPage";
+import Search from "./componenets/Search";
 const HomeStart = () => {
-  const[image,setimage]=useState();
+  const [image, setimage] = useState();
   let navigate = useNavigate();
-  let LoggedinUser=setUser();
+  let LoggedinUser = setUser();
   let imageURL;
-  localStorage.setItem('user',JSON.stringify(setUser()));
-  let data=JSON.parse(localStorage.getItem('user'));
+  localStorage.setItem('user', JSON.stringify(setUser()));
+  let data = JSON.parse(localStorage.getItem('user'));
   console.log(data);
   console.log(LoggedinUser);
   const onEditHandler = () => {
@@ -47,27 +48,27 @@ const HomeStart = () => {
 
   let arr = [];
   let user = [];
- 
-  useEffect( async() => {
+
+  useEffect(async () => {
     let userData = collection(db, "userProfiles");
     console.log(userData);
-    let currUser=LoggedinUser
+    let currUser = LoggedinUser
     console.log(currUser)
-    let q = query(userData, where("email", "==",data));
+    let q = query(userData, where("email", "==", data));
     user = await getDocs(q);
     console.log(user);
     user.forEach((doc) => {
       arr = doc.data();
-      currUser=localStorage.getItem('loginUseruid')
+      currUser = localStorage.getItem('loginUseruid')
       getDownloadURL(ref(storage, `images/${currUser}`))
-      .then((url) => {
+        .then((url) => {
           // `url` is the download URL for 'images/stars.jpg'
 
           // This can be downloaded directly:
           const xhr = new XMLHttpRequest();
           xhr.responseType = 'blob';
           xhr.onload = (event) => {
-              const blob = xhr.response;
+            const blob = xhr.response;
           };
           xhr.open('GET', url);
           xhr.send();
@@ -78,11 +79,11 @@ const HomeStart = () => {
           console.log(url)
           setimage(url);
           // localStorage.setItem('profileimage2',url)
-      })
-      .catch((error) => {
+        })
+        .catch((error) => {
           // Handle any errors
           console.log(error)
-      });
+        });
       // arr.push(doc.data());
       // console.log(arr);
     });
@@ -90,42 +91,46 @@ const HomeStart = () => {
   }, []);
   console.log(myUsers);
   let fetchedpost;
- let arr2=[];
- let newarr=[];
+  let arr2 = [];
+  let newarr = [];
   const [allpost, setallPost] = useState([]);
   useEffect(async () => {
     let postData = collection(db, "Posts");
     console.log(postData);
-    let q = query(postData,where("postedBy", "==",data));
+    let q = query(postData, where("postedBy", "==", data));
     fetchedpost = await getDocs(q);
     console.log(fetchedpost);
     fetchedpost.forEach((doc) => {
       arr2 = doc.data();
-        newarr.push(arr2);
+      newarr.push(arr2);
       console.log(newarr);
     });
     setallPost(newarr);
   }, []);
-console.log(allpost);
+  console.log(allpost);
   return (
     <div className="main">
       <div className="top-bar">
         <h1 className="header_name">Friends</h1>
-      
-        <Button id="edit-Profile" onClick={onEditHandler}>
-          Settings
-        </Button>
+
+
+        <div className="menu_bar">
+          <Button id="edit-Profile" onClick={onEditHandler}>
+            Settings
+          </Button>
+          <Search />
+        </div>
       </div>
       <div className='intro-section'>
         <div id="intro">
           <div className="img_post">
-            <img src={image} style={{width:'200px', height: '180px' ,  }} alt="Image is Here"></img>
+            <img src={image} style={{ width: '200px', height: '180px', }} alt="Image is Here"></img>
           </div>
           <div>
-          <div>
-            <h2 className="sub-heading" ><b>Intro</b></h2>
-          </div>
-          
+            <div>
+              <h2 className="sub-heading" ><b>&nbsp;&nbsp;&nbsp;&nbsp;Profile</b></h2>
+            </div>
+
             <div></div>
             <div className="boxes">Email: {myUsers.email}</div>
             <div className="boxes">Date of Birth: {myUsers.dob}</div>
@@ -134,23 +139,26 @@ console.log(allpost);
           </div>
         </div>
       </div>
-{/* <div className='post-section'>
-      <div>
-        <h2 className="sub-heading">My Posts</h2>
-      </div>
-      <div>
-      {allpost.map((data)=>{
-              return(
+      <div className='post-section'>
+        <div>
+          <h2 className="create_post_heading">Create a Post</h2>
+          <textarea placeholder="create a content to post" type="text" className="post_input_create"  />
+          <button className="post_create_btn">Post</button>
+          
+        </div>
+        <div>
+          {allpost.map((data) => {
+            return (
               <div> <div>Post Title: {data.title}</div>
-              <div>Created By: {data.postedBy}</div>
-             <div> Post content:{data.content}</div>
-              
+                <div>Created By: {data.postedBy}</div>
+                <div> Post content:{data.content}</div>
+
               </div>
-              
-              )
+
+            )
           })}
+        </div>
       </div>
-      </div> */}
     </div>
   );
 };
